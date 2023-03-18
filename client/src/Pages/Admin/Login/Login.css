@@ -1,0 +1,40 @@
+.login-container {
+    height: max(100vh, 500px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d6d6d6;
+}
+
+.main {
+    padding: 10px;
+    width: 700px;
+    height: 500px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+}
+
+.side-panel{
+    background: rgb(27,27,30);
+    background: linear-gradient(30deg, rgba(27,27,30,1) 40%, #333533 70%, rgba(55,63,81,1) 90%, rgb(96, 100, 105) 100%);;
+    border-radius: 18px;
+    width: 40%;
+    color: white;
+    position: relative;
+}
+
+.logo {
+    background-color: red;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.esmia {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: .15rem;
+    background: url('./../../../assets/img/bulle.svg');
+}
