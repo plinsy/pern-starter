@@ -14,7 +14,7 @@ const createDatabaseIfNotExists = async () => {
     const databaseName = process.env.DB_NAME;
     const query = `SELECT 1 FROM pg_database WHERE datname = '${databaseName}';`;
     const result = await sequelize.query(query);
-    if (result.length > 0) {
+    if (result[0].length > 0) {
       console.log(`Database '${databaseName}' already exists`);
     } else {
       await sequelize.query(`CREATE DATABASE ${databaseName};`);

@@ -26,6 +26,10 @@ DB_PORT=5432
 JWT_SECRET="No secret between us"
 ```
 
+**Importer la configuration de la BDD qui se trouve dans `config/db.sql`**
+
+Lancer le serveur
+
 ```bash
 npm start
 ```
