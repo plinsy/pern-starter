@@ -94,6 +94,10 @@ app.get("/me", authenticate, (req: any, res: any) => {
   res.json({ user: req.user });
 });
 
+app.get("*", async (req: any, res: any) => {
+  res.send({ message: "Le serveur marche très bien" });
+});
+
 // Sync the User model with the database
 sequelize
   .sync()
