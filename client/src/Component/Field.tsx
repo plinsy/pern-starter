@@ -3,7 +3,7 @@ const Field = (props: any) => {
       <>
         <div className={`form-group ${props.type !== "hidden" ? "mb-4" : ""}`}>
           {props.type !== "hidden" ? (
-            <label htmlFor={`id_${props.name}`}>{props.label}</label>
+            <label className="mb-1" htmlFor={`id_${props.name}`}>{props.label}</label>
           ) : (
             <></>
           )}

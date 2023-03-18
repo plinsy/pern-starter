@@ -26,12 +26,13 @@ const Login = () => {
                     </div>
                     <div className="end-title">valuation</div>
                 </div>
-                <div className="description">La gestion des evaluations enfin simplifié !</div>
+                <div className="description">La gestion des évaluations enfin simplifié !</div>
             </div>
             <div className="main-panel">
                 <h1>Identifiez-vous !</h1>
                 <Field value={email} type="text" label="E-mail" name="email" placeholder="Votre e-mail" handleChange={handleChange}/>
                 <Field value={password} type="password" label="Mot de passe" name="password" placeholder="Votre mot de passe" handleChange={handleChange}/>
+                <button className="btn btn-warning start-btn">Commencer</button>
             </div>
         </div>
     </div>;
