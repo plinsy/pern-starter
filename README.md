@@ -14,6 +14,18 @@ cd e-valuation/
 npm install
 ```
 
+Créer un `.env` à la racine du projet
+
+```text
+PORT=5000
+DB_NAME=evaluationdb
+DB_USERNAME=postgres
+DB_PASSWORD=
+DB_HOST=localhost
+DB_PORT=5432
+JWT_SECRET="No secret between us"
+```
+
 ```bash
 npm start
 ```
@@ -34,6 +46,18 @@ npm install
 npm start
 ```
 
-```bash
 Le serveur du client est lancé à l'adresse http://localhost:3000
+
+## Documentation
+
+### Les routes disponibles
+
+#### Serveur
+
+```text
+GET /
+```
+
+```text
+POST /api/login
 ```
