@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Robot';
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf') format('ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Jomhuria';
+  src: url('./assets/fonts/Jomhuria/Jomhuria-Regular.ttf') format('ttf');
+  font-weight: 600;
+}
+
 .App {
   text-align: center;
 }
