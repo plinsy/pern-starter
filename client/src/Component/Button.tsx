@@ -3,6 +3,7 @@ export interface ButtonProps {
   color?: "default" | "primary" | "success";
   value?: string;
   disabled?: boolean;
+  className?: string;
 }
 
 const Button = (props: ButtonProps) => {
@@ -11,7 +12,9 @@ const Button = (props: ButtonProps) => {
       <button
         type={props.type ?? "button"}
         disabled={props.disabled}
-        className={`btn btn-${props.color ?? "default border"}`}
+        className={
+          `btn btn-${props.color ?? "default border "} ` + props.className
+        }
       >
         {props.value}
       </button>
