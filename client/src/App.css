@@ -12,6 +12,10 @@
   font-weight: 600;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .App {
   text-align: center;
 }

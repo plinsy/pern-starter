@@ -6,8 +6,10 @@ import AdminLogin from "./Pages/Admin/Login/Login";
 import AdminRegister from "./Pages/Admin/Register/Register";
 import AccountLogin from "./Pages/AccountLogin/AccountLogin";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import FormUI from "./Pages/Forms/FormUI/FormUI";
 
 const router = createBrowserRouter([
+  { path: "forms/:date", Component: FormUI },
   { path: "dashboard/*", element: <Dashboard /> },
   { path: "accounts/login", element: <AccountLogin /> },
   { path: "admin/register", element: <AdminRegister /> },

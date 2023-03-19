@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-import { Account } from "./models";
+import { Account, Student } from "./models";
 import { Op } from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
@@ -23,7 +23,18 @@ const authenticate = async (req: any, res: any, next: any) => {
     });
 
     if (!account) {
-      return res.status(401).json({ error: "Invalid authentication token" });
+      // Find the student with the given NIE
+      const { nie } = await jwt.verify(token, process.env.JWT_SECRET);
+
+      const student: Student | null = await Student.findOne({
+        where: {
+          nie: { [Op.eq]: nie },
+        },
+      });
+
+      if (!student) {
+        return res.status(401).json({ error: "Invalid authentication token" });
+      }
     }
 
     // Attach the account

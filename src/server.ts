@@ -18,6 +18,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use("/api/forms", require("./routes/forms.routes"));
 app.use("/api/accounts", require("./routes/accounts.routes"));
 app.use("/api/admin", require("./routes/admin.routes"));
 

@@ -11,7 +11,6 @@ interface FormAttributes {
   state: "new" | "draft" | "closed" | "canceled";
   name: string;
   email: string;
-  comment: string | null;
   accountId: number;
 }
 
@@ -25,7 +24,6 @@ class Form extends Model<any, any> implements FormAttributes {
   public state!: "new" | "draft" | "closed" | "canceled";
   public name!: string;
   public email!: string;
-  public comment!: string | null;
   public accountId!: number;
 
   public readonly createdAt!: Date;
@@ -73,10 +71,6 @@ Form.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    comment: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     accountId: {
       type: DataTypes.INTEGER,
