@@ -1,5 +1,7 @@
-import { Model, Optional, DataTypes } from "sequelize";
-import { sequelize } from "./../config/db.config.ts";
+import { Model, Optional, DataTypes, BelongsToGetAssociationMixin, BelongsToSetAssociationMixin, BelongsToCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, HasManyCreateAssociationMixin } from "sequelize";
+import { sequelize } from "./../config/db.config";
+import Account from './account.model';
+import Question from "./question.model";
 
 interface FormAttributes {
   formId: number;
@@ -30,6 +32,14 @@ class Form extends Model<any, any> implements FormAttributes {
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date | null;
+
+  public getUser!: BelongsToGetAssociationMixin<Account>;
+  public setUserId!: BelongsToSetAssociationMixin<Account, number>;
+  public createUser!: BelongsToCreateAssociationMixin<Account>
+
+  public getQuestions!: HasManyGetAssociationsMixin<Question>;
+  public addQuestion!: HasManyAddAssociationMixin<Question, number>;
+  public createQuestion!: HasManyCreateAssociationMixin<Question>;
 }
 
 Form.init(
@@ -87,5 +97,21 @@ Form.init(
     modelName: "Form",
   }
 );
+
+Form.belongsTo(Account, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  foreignKey: {
+    allowNull: false,
+  },
+});
+
+Form.hasMany(Question, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  foreignKey: {
+    allowNull: false,
+  },
+});
 
 export default Form;

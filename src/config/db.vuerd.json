@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 5000,
     "height": 5000,
-    "scrollTop": 0,
-    "scrollLeft": 0,
+    "scrollTop": -216,
+    "scrollLeft": -556,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -19,7 +19,7 @@
     },
     "database": "PostgreSQL",
     "databaseName": "evaluationdb",
-    "canvasType": "@vuerd/plugin-generate-template",
+    "canvasType": "ERD",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -145,7 +145,7 @@
           "active": false,
           "left": 47,
           "top": 34,
-          "zIndex": 5,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 60
         },
@@ -414,7 +414,7 @@
           "active": false,
           "left": 504,
           "top": 33,
-          "zIndex": 16,
+          "zIndex": 7,
           "widthName": 60,
           "widthComment": 60
         },
@@ -522,7 +522,7 @@
           "active": false,
           "left": 26,
           "top": 519,
-          "zIndex": 14,
+          "zIndex": 6,
           "widthName": 60,
           "widthComment": 60
         },
@@ -676,7 +676,7 @@
           "active": false,
           "left": 642,
           "top": 499,
-          "zIndex": 9,
+          "zIndex": 3,
           "widthName": 60,
           "widthComment": 60
         },
@@ -761,7 +761,7 @@
           "active": false,
           "left": 436,
           "top": 757,
-          "zIndex": 17,
+          "zIndex": 8,
           "widthName": 60,
           "widthComment": 60
         },
@@ -846,7 +846,7 @@
           "active": false,
           "left": 1064,
           "top": 30,
-          "zIndex": 4,
+          "zIndex": 1,
           "widthName": 60,
           "widthComment": 60
         },
@@ -908,7 +908,7 @@
           "active": false,
           "left": 1070,
           "top": 306,
-          "zIndex": 18,
+          "zIndex": 9,
           "widthName": 60,
           "widthComment": 60
         },
@@ -970,7 +970,7 @@
           "active": false,
           "left": 101,
           "top": 300,
-          "zIndex": 10,
+          "zIndex": 4,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1124,7 +1124,7 @@
           "active": false,
           "left": 1151,
           "top": 491,
-          "zIndex": 13,
+          "zIndex": 5,
           "widthName": 60,
           "widthComment": 60
         },

@@ -1,5 +1,7 @@
-import { Model, Optional, DataTypes } from "sequelize";
-import { sequelize } from "./../config/db.config.ts";
+import { Model, Optional, DataTypes, BelongsToGetAssociationMixin, BelongsToSetAssociationMixin, BelongsToCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, HasManyCreateAssociationMixin } from "sequelize";
+import { sequelize } from "./../config/db.config";
+import Form from "./form.model";
+import Option from "./option.model";
 
 export interface QuestionAttributes {
   questionId: number;
@@ -20,6 +22,14 @@ class Question extends Model<QuestionAttributes, QuestionCreationAttributes> {
   public required!: boolean;
   public answerType!: string;
   public sectionId!: number | null;
+
+  public getForm!: BelongsToGetAssociationMixin<Form>;
+  public setFormId!: BelongsToSetAssociationMixin<Form, number>;
+  public createForm!: BelongsToCreateAssociationMixin<Form>;
+
+  public getOptions!: HasManyGetAssociationsMixin<Option>;
+  public addOption!: HasManyAddAssociationMixin<Option, number>;
+  public createOption!: HasManyCreateAssociationMixin<Option>;
 }
 
 Question.init(
@@ -47,5 +57,21 @@ Question.init(
   },
   { sequelize, modelName: "Question" }
 );
+
+Question.belongsTo(Form, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  foreignKey: {
+    allowNull: false,
+  },
+});
+
+Question.hasMany(Option, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  foreignKey: {
+    allowNull: false,
+  },
+});
 
 export default Question;
