@@ -12,11 +12,13 @@ router.post("/login", async (req: any, res: any, next: any) => {
     const { nie, accessKey } = req.body;
     const student = await Student.findOne({ where: { nie } });
     if (!student) {
-      res.status(400).send({ message: `User with nie = ${nie} not found` });
+      return res
+        .status(400)
+        .send({ message: `User with nie = ${nie} not found` });
     }
     const form = await Form.findOne({ where: { accessKey } });
     if (!form) {
-      res
+      return res
         .status(400)
         .send({ message: `Form with accessKey = ${accessKey} not found` });
     }
