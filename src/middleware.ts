@@ -1,8 +1,11 @@
 const jwt = require("jsonwebtoken");
-import { User } from "./models";
+import { Account } from "./models";
+import { Op } from "sequelize";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Define a middleware for authenticating requests
-const authenticate = (req: any, res: any, next: any) => {
+const authenticate = async (req: any, res: any, next: any) => {
   // Get the JWT from the Authorization header
   const token = req.headers.authorization?.split(" ")[1];
 
@@ -11,22 +14,24 @@ const authenticate = (req: any, res: any, next: any) => {
   }
 
   try {
-    // Verify the JWT and get the user ID from the payload
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
+    // Verify the JWT and get the account ID from the payload
+    const { id } = await jwt.verify(token, process.env.JWT_SECRET);
 
-    // Find the user with the given ID
-    const user = User.findOne({ where: { id } });
+    // Find the account with the given ID
+    const account: Account | null = await Account.findOne({
+      where: { accountId: { [Op.eq]: id } },
+    });
 
-    if (!user) {
+    if (!account) {
       return res.status(401).json({ error: "Invalid authentication token" });
     }
 
-    // Attach the user
-    req.user = user;
+    // Attach the account
+    req.account = account;
     next();
   } catch (error) {
-    console.error("Error authenticating user:", error);
-    res.status(500).json({ error: "Unable to authenticate user" });
+    console.error("Error authenticating account:", error);
+    res.status(500).json({ error: "Unable to authenticate account" });
   }
 };
 

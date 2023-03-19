@@ -6,6 +6,7 @@ const router = express.Router({ mergeParams: true });
 router.use(express.json());
 router.use(cors());
 import { Form, Student } from "./../models";
+import { Op } from "sequelize";
 
 router.post("/login", async (req: any, res: any, next: any) => {
   try {
@@ -16,12 +17,24 @@ router.post("/login", async (req: any, res: any, next: any) => {
         .status(400)
         .send({ message: `User with nie = ${nie} not found` });
     }
-    const form = await Form.findOne({ where: { accessKey } });
+    const form: Form | null = await Form.findOne({
+      where: {
+        accessKey: {
+          [Op.like]: [accessKey],
+        },
+        state: {
+          [Op.not]: ["closed", "canceled"],
+        },
+      },
+    });
     if (!form) {
       return res
         .status(400)
         .send({ message: `Form with accessKey = ${accessKey} not found` });
     }
+    // if (form.state === "closed") {
+    //   return res.status(400).send({ message: `Form not available` });
+    // }
     // Generate a JWT for the user
     const token = jwt.sign({ nie: nie }, process.env.JWT_SECRET, {
       expiresIn: "1h",

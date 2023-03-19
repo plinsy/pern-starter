@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/api/accounts", require("./routes/accounts.routes"));
+app.use("/api/admin", require("./routes/admin.routes"));
 
 // Define a route for creating a new user
 app.post("/signup", async (req: any, res: any) => {

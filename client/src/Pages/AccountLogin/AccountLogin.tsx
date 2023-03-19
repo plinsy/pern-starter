@@ -40,43 +40,58 @@ const AccountLogin = () => {
     <>
       <Alert {...alert} />
       <section className="row">
-        <aside className="col-11 col-xl-5 mx-auto">
-          <article className="card shadow rounded-3 mt-5">
+        <aside className="col-11 col-xl-5 mx-auto mt-5 pt-5">
+          <article className="card shadow border-0 rounded-3 mt-5">
             <div className="card-body">
               <section className="row">
-                <aside className="col-3">
+                <aside className="col-12 col-md-6">
                   <article className="card bg-success h-100">
-                    <div className="logo">
-                      <div className="logo-esmia"></div>
-                    </div>
+                    <section className="text-white d-flex flex-column justify-content-between h-100 card-body py-5">
+                      <div className="logo mt-3">
+                        <div className="logo-esmia text-dark">
+                          <div className="esmia">ESMIA</div>
+                          <div className="start-title">
+                            <strong>E_</strong>
+                          </div>
+                        </div>
+                        <div className="end-title">
+                          <strong>valuation</strong>
+                        </div>
+                      </div>
+                      <h4 className="mb-4">
+                        L'évaluation des professeurs simplifiée !
+                      </h4>
+                    </section>
                   </article>
                 </aside>
-                <aside className="col-9">
-                  <h2>Identifiez-vous!</h2>
-                  <Form onSubmit={formik.handleSubmit}>
-                    <Field
-                      label="NIE"
-                      name="nie"
-                      value={formik.values.nie}
-                      handleChange={formik.handleChange}
-                    />
-                    <Field
-                      label="Clé d'accès"
-                      type="password"
-                      name="accessKey"
-                      value={formik.values.accessKey}
-                      handleChange={formik.handleChange}
-                    />
-                    <div className="form-group text-center">
-                      <Button
-                        type="submit"
-                        disabled={formik.isSubmitting}
-                        value="Commencer l'évaluation"
-                        color="success"
-                        className=""
+                <aside className="col-12 col-md-6 py-5">
+                  <article className="my-5 py-5">
+                    <h2 className="mb-5">Identifiez-vous!</h2>
+                    <Form onSubmit={formik.handleSubmit}>
+                      <Field
+                        label="NIE"
+                        name="nie"
+                        value={formik.values.nie}
+                        handleChange={formik.handleChange}
                       />
-                    </div>
-                  </Form>
+                      <Field
+                        label="Clé d'accès"
+                        type="password"
+                        name="accessKey"
+                        value={formik.values.accessKey}
+                        handleChange={formik.handleChange}
+                      />
+                      <div className="form-group text-center">
+                        <Button
+                          type="submit"
+                          disabled={formik.isSubmitting}
+                          value="Commencer l'évaluation"
+                          color="success"
+                          className=""
+                        />
+                      </div>
+                    </Form>
+                  </article>
                 </aside>
               </section>
             </div>

@@ -2,8 +2,8 @@ import { Sequelize, DataTypes } from "sequelize";
 const dotenv = require("dotenv");
 dotenv.config();
 
-const sequelize = new Sequelize(
-  `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}`,
+let sequelize = new Sequelize(
+  `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
   {
     dialect: "postgres",
   }
@@ -28,7 +28,7 @@ const createDatabaseIfNotExists = async () => {
 // Initialize Sequelize with database connection details
 createDatabaseIfNotExists()
   .then(() => {
-    const sequelize = new Sequelize(
+    sequelize = new Sequelize(
       process.env.DB_NAME || "evaluationdb",
       process.env.DB_USERNAME || "postgres",
       process.env.DB_PASSWORD || "",

@@ -1,4 +1,4 @@
-import "./Login.css";
+import "./Register.css";
 import Field from "../../../Component/Field";
 import Button from "../../../Component/Button";
 import Alert from "../../../Component/Alert";
@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import apiService from "../../../Providers/api.service";
 import storageService from "../../../Providers/storage.service";
-import { decodeToken } from "react-jwt";
 
 const Login = () => {
   const [alert, setAlert] = useState({
@@ -18,20 +17,28 @@ const Login = () => {
 
   const formik = useFormik({
     initialValues: {
+      username: "",
       email: "",
       password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
         setAlert({ color: "info", message: "Loading...", shown: true });
-        const res: any = await apiService.post("/admin/login", values);
-        const { token } = res.data;
-        storageService.set("token", token);
-        apiService.reload();
-        return decodeToken(token);
+        const res: any = await apiService.post("/admin/register", values);
+        setAlert({
+          color: "success",
+          message: "Inscription réussie",
+          shown: true,
+        });
       } catch (err: any) {
-        setSubmitting(false);
-        setAlert({ color: "danger", message: err.message, shown: true });
+        setAlert({
+          color: "danger",
+          message: err.response.data.error ?? err.message,
+          shown: true,
+        });
+        setTimeout(() => {
+          setSubmitting(false);
+        }, 2000);
         throw err;
       }
     },
@@ -56,13 +63,21 @@ const Login = () => {
               </div>
             </div>
             <div className="main-panel">
-              <h1>Identifiez-vous !</h1>
+              <h1>Créez votre compte</h1>
+              <Field
+                value={formik.values.username}
+                type="text"
+                label="Pseudo"
+                name="username"
+                placeholder="Comme un e-mail mais en plus simple"
+                handleChange={formik.handleChange}
+              />
               <Field
                 value={formik.values.email}
                 type="text"
                 label="E-mail"
                 name="email"
-                placeholder="Votre e-mail"
+                placeholder="Votre e-mail préféré"
                 handleChange={formik.handleChange}
               />
               <Field
@@ -70,13 +85,13 @@ const Login = () => {
                 type="password"
                 label="Mot de passe"
                 name="password"
-                placeholder="Votre mot de passe"
+                placeholder="********"
                 handleChange={formik.handleChange}
               />
               <div className="form-group">
                 <Button
                   type="submit"
-                  value="Commencer"
+                  value="Vérifier"
                   color="success"
                   className="w-100"
                 />
