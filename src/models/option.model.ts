@@ -1,4 +1,11 @@
-import { Model, Optional, DataTypes, BelongsToCreateAssociationMixin, BelongsToGetAssociationMixin, BelongsToSetAssociationMixin } from "sequelize";
+import {
+  Model,
+  Optional,
+  DataTypes,
+  BelongsToCreateAssociationMixin,
+  BelongsToGetAssociationMixin,
+  BelongsToSetAssociationMixin,
+} from "sequelize";
 import { sequelize } from "./../config/db.config";
 import Question from "./question.model";
 
@@ -21,7 +28,22 @@ class Option
 
   public getQuestion!: BelongsToGetAssociationMixin<Question>;
   public setQuestionId!: BelongsToSetAssociationMixin<Question, number>;
-  public createQuestion!: BelongsToCreateAssociationMixin<Question>
+  public createQuestion!: BelongsToCreateAssociationMixin<Question>;
+
+  public static associate(models: any) {
+    Question.hasMany(Option, {
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+
+    Option.belongsTo(Question, {
+      foreignKey: "questionId",
+      as: "question",
+    });
+  }
 }
 
 Option.init(
@@ -42,18 +64,5 @@ Option.init(
   },
   { sequelize, modelName: "Option" }
 );
-
-Question.hasMany(Option, {
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-  foreignKey: {
-    allowNull: false,
-  },
-});
-
-Option.belongsTo(Question, {
-  foreignKey: "questionId",
-  as: "question",
-});
 
 export default Option;
