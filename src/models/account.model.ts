@@ -1,5 +1,6 @@
-import { Model, Optional, DataTypes } from "sequelize";
-import { sequelize } from "../config/db.config.ts";
+import { Model, Optional, DataTypes, HasManyAddAssociationMixin, HasManyGetAssociationsMixin, HasManyCreateAssociationMixin } from "sequelize";
+import { sequelize } from "../config/db.config";
+import Form from './form.model';
 
 interface AccountAttributes {
   accountId: number;
@@ -24,6 +25,10 @@ class Account
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date | null;
+
+  public getForms!: HasManyGetAssociationsMixin<Form>;
+  public addForm!: HasManyAddAssociationMixin<Form, number>;
+  public createForm!: HasManyCreateAssociationMixin<Form>;
 }
 
 Account.init(
@@ -57,5 +62,10 @@ Account.init(
     modelName: "Account",
   }
 );
+
+Account.hasMany(Form, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
 
 export default Account;

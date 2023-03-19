@@ -1,5 +1,6 @@
-import { Model, Optional, DataTypes } from "sequelize";
-import { sequelize } from "./../config/db.config.ts";
+import { Model, Optional, DataTypes, BelongsToCreateAssociationMixin, BelongsToGetAssociationMixin, BelongsToSetAssociationMixin } from "sequelize";
+import { sequelize } from "./../config/db.config";
+import Question from "./question.model";
 
 export interface OptionAttributes {
   optionId: number;
@@ -17,6 +18,10 @@ class Option
   public optionId!: number;
   public value!: string;
   public questionId!: number;
+
+  public getQuestion!: BelongsToGetAssociationMixin<Question>;
+  public setQuestionId!: BelongsToSetAssociationMixin<Question, number>;
+  public createQuestion!: BelongsToCreateAssociationMixin<Question>
 }
 
 Option.init(
@@ -37,5 +42,18 @@ Option.init(
   },
   { sequelize, modelName: "Option" }
 );
+
+Question.hasMany(Option, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  foreignKey: {
+    allowNull: false,
+  },
+});
+
+Option.belongsTo(Question, {
+  foreignKey: "questionId",
+  as: "question",
+});
 
 export default Option;

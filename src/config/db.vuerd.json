@@ -19,7 +19,7 @@
     },
     "database": "PostgreSQL",
     "databaseName": "evaluationdb",
-    "canvasType": "@vuerd/plugin-generate-template",
+    "canvasType": "ERD",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -1315,18 +1315,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "f25f076a-d8ed-4f70-9b1a-3c3d903ab2b9",
-          "columnIds": [
-            "b825e1e5-ea45-466b-8919-0cca946f1069"
-          ],
+          "columnIds": ["b825e1e5-ea45-466b-8919-0cca946f1069"],
           "x": 220.5,
           "y": 185,
           "direction": "bottom"
         },
         "end": {
           "tableId": "16088f7c-5d96-4530-835e-9c6dc6c9f29f",
-          "columnIds": [
-            "426f63c1-598d-4038-abcf-f9689149f684"
-          ],
+          "columnIds": ["426f63c1-598d-4038-abcf-f9689149f684"],
           "x": 200.495849609375,
           "y": 519,
           "direction": "top"
@@ -1341,18 +1337,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "059b4348-50ba-4690-a24c-43abb8ffc6a1",
-          "columnIds": [
-            "c3934a8f-f701-4eca-9226-424cab01d4d7"
-          ],
+          "columnIds": ["c3934a8f-f701-4eca-9226-424cab01d4d7"],
           "x": 716.93359375,
           "y": 639,
           "direction": "bottom"
         },
         "end": {
           "tableId": "3e65a3cc-2891-48ca-b5f8-5a7dda74e224",
-          "columnIds": [
-            "7f91b741-799f-4b82-9943-d92b5257ad36"
-          ],
+          "columnIds": ["7f91b741-799f-4b82-9943-d92b5257ad36"],
           "x": 816.97265625,
           "y": 703,
           "direction": "top"
@@ -1367,18 +1359,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "3e65a3cc-2891-48ca-b5f8-5a7dda74e224",
-          "columnIds": [
-            "731e41bc-2dc1-494e-a5b9-f9220365a56b"
-          ],
+          "columnIds": ["731e41bc-2dc1-494e-a5b9-f9220365a56b"],
           "x": 635,
           "y": 735,
           "direction": "left"
         },
         "end": {
           "tableId": "3c3090d6-acff-41b8-ac3c-02c5ef56792e",
-          "columnIds": [
-            "b40df94e-af24-482a-a0f7-c4147ddbac26"
-          ],
+          "columnIds": ["b40df94e-af24-482a-a0f7-c4147ddbac26"],
           "x": 425.99169921875,
           "y": 847.25,
           "direction": "right"
@@ -1393,18 +1381,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "3e65a3cc-2891-48ca-b5f8-5a7dda74e224",
-          "columnIds": [
-            "731e41bc-2dc1-494e-a5b9-f9220365a56b"
-          ],
+          "columnIds": ["731e41bc-2dc1-494e-a5b9-f9220365a56b"],
           "x": 635,
           "y": 799,
           "direction": "left"
         },
         "end": {
           "tableId": "16088f7c-5d96-4530-835e-9c6dc6c9f29f",
-          "columnIds": [
-            "7b7ac974-565b-475f-bc48-08439441b4d0"
-          ],
+          "columnIds": ["7b7ac974-565b-475f-bc48-08439441b4d0"],
           "x": 374.99169921875,
           "y": 594.5,
           "direction": "right"
@@ -1419,18 +1403,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "059b4348-50ba-4690-a24c-43abb8ffc6a1",
-          "columnIds": [
-            "c3934a8f-f701-4eca-9226-424cab01d4d7"
-          ],
+          "columnIds": ["c3934a8f-f701-4eca-9226-424cab01d4d7"],
           "x": 716.93359375,
           "y": 365,
           "direction": "top"
         },
         "end": {
           "tableId": "75f81924-73f3-4e19-a043-8381ffec685a",
-          "columnIds": [
-            "1424bced-b917-4135-9fa1-a1554487bac6"
-          ],
+          "columnIds": ["1424bced-b917-4135-9fa1-a1554487bac6"],
           "x": 746.5,
           "y": 291,
           "direction": "bottom"
@@ -1445,18 +1425,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "45d583ff-915b-47be-b8df-495901678e9d",
-          "columnIds": [
-            "087c117f-f28b-4668-ab29-7016f5833f0c"
-          ],
+          "columnIds": ["087c117f-f28b-4668-ab29-7016f5833f0c"],
           "x": 1064,
           "y": 95.25,
           "direction": "left"
         },
         "end": {
           "tableId": "75f81924-73f3-4e19-a043-8381ffec685a",
-          "columnIds": [
-            "f51b0a26-2ef0-4589-b318-dcde89abcb61"
-          ],
+          "columnIds": ["f51b0a26-2ef0-4589-b318-dcde89abcb61"],
           "x": 920,
           "y": 147,
           "direction": "right"
@@ -1471,18 +1447,14 @@
         "startRelationshipType": "Ring",
         "start": {
           "tableId": "344841f2-6c63-446f-90f6-c4993b33f47d",
-          "columnIds": [
-            "2c8bfccf-94c0-4360-ada6-7c2731015502"
-          ],
+          "columnIds": ["2c8bfccf-94c0-4360-ada6-7c2731015502"],
           "x": 448,
           "y": 355,
           "direction": "right"
         },
         "end": {
           "tableId": "3e65a3cc-2891-48ca-b5f8-5a7dda74e224",
-          "columnIds": [
-            "5c242f30-a84a-48e7-972e-12ef418970a4"
-          ],
+          "columnIds": ["5c242f30-a84a-48e7-972e-12ef418970a4"],
           "x": 635,
           "y": 863,
           "direction": "left"
@@ -1497,18 +1469,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "4420cc39-64da-45b1-9fac-e1fc08beec2b",
-          "columnIds": [
-            "ae8b34ce-5191-4a6f-b8d0-ed2c229253b2"
-          ],
+          "columnIds": ["ae8b34ce-5191-4a6f-b8d0-ed2c229253b2"],
           "x": 1151,
           "y": 576.75,
           "direction": "left"
         },
         "end": {
           "tableId": "059b4348-50ba-4690-a24c-43abb8ffc6a1",
-          "columnIds": [
-            "61230d0e-c1c5-431d-9e78-8ba846df8685"
-          ],
+          "columnIds": ["61230d0e-c1c5-431d-9e78-8ba846df8685"],
           "x": 892.8671875,
           "y": 502,
           "direction": "right"
@@ -1523,18 +1491,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "a8fb4968-5c7c-4f78-a839-36139444a455",
-          "columnIds": [
-            "9414a50d-d83e-4515-b2d6-8c90ff14d796"
-          ],
+          "columnIds": ["9414a50d-d83e-4515-b2d6-8c90ff14d796"],
           "x": 1732.5,
           "y": 326,
           "direction": "top"
         },
         "end": {
           "tableId": "b8a9956a-5d76-4114-b054-4f9aabab61cc",
-          "columnIds": [
-            "d6850dda-e2be-4dda-a4c2-227ef64f35f5"
-          ],
+          "columnIds": ["d6850dda-e2be-4dda-a4c2-227ef64f35f5"],
           "x": 1740.5,
           "y": 170,
           "direction": "bottom"
@@ -1549,18 +1513,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "45d583ff-915b-47be-b8df-495901678e9d",
-          "columnIds": [
-            "087c117f-f28b-4668-ab29-7016f5833f0c"
-          ],
+          "columnIds": ["087c117f-f28b-4668-ab29-7016f5833f0c"],
           "x": 1411,
           "y": 95.25,
           "direction": "right"
         },
         "end": {
           "tableId": "b8a9956a-5d76-4114-b054-4f9aabab61cc",
-          "columnIds": [
-            "bc0d5672-a197-41bd-8480-53c497d1ca82"
-          ],
+          "columnIds": ["bc0d5672-a197-41bd-8480-53c497d1ca82"],
           "x": 1567,
           "y": 115,
           "direction": "left"
@@ -1575,18 +1535,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "a8fb4968-5c7c-4f78-a839-36139444a455",
-          "columnIds": [
-            "9414a50d-d83e-4515-b2d6-8c90ff14d796"
-          ],
+          "columnIds": ["9414a50d-d83e-4515-b2d6-8c90ff14d796"],
           "x": 1559,
           "y": 381,
           "direction": "left"
         },
         "end": {
           "tableId": "75f81924-73f3-4e19-a043-8381ffec685a",
-          "columnIds": [
-            "f3c2c7be-4db1-4537-a353-21c90440a68e"
-          ],
+          "columnIds": ["f3c2c7be-4db1-4537-a353-21c90440a68e"],
           "x": 920,
           "y": 243,
           "direction": "right"
@@ -1601,18 +1557,14 @@
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "f25f076a-d8ed-4f70-9b1a-3c3d903ab2b9",
-          "columnIds": [
-            "b825e1e5-ea45-466b-8919-0cca946f1069"
-          ],
+          "columnIds": ["b825e1e5-ea45-466b-8919-0cca946f1069"],
           "x": 394,
           "y": 109.5,
           "direction": "right"
         },
         "end": {
           "tableId": "75f81924-73f3-4e19-a043-8381ffec685a",
-          "columnIds": [
-            "85f2a460-a129-4114-ac7a-ac3b9f0afd03"
-          ],
+          "columnIds": ["85f2a460-a129-4114-ac7a-ac3b9f0afd03"],
           "x": 573,
           "y": 195,
           "direction": "left"
