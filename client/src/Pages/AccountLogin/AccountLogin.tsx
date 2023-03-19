@@ -62,9 +62,7 @@ const AccountLogin = () => {
                           <strong>valuation</strong>
                         </div>
                       </div>
-                      <h4 className="mb-4">
-                        L'évaluation des professeurs simplifiée !
-                      </h4>
+                      <h4 className="mb-4">Votre avis a de la valeur</h4>
                     </section>
                   </article>
                 </aside>

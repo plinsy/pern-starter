@@ -1,3 +1,4 @@
+import "./Alert.css";
 import { useState, useEffect } from "react";
 
 export interface AlertProps {
@@ -42,7 +43,7 @@ const Alert = (props: AlertProps) => {
 
   return (
     <>
-      <div className="toast-container position-fixed p-3 end-0">
+      <div className="ToastContainer toast-container position-fixed p-3 end-0">
         <div
           className={`toast showing animate__animated ${
             isClosing ? "animate__backOutRight" : ""

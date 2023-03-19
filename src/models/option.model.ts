@@ -51,6 +51,7 @@ Option.init(
     optionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     value: {

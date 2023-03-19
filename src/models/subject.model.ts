@@ -20,6 +20,7 @@ Subject.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
       unique: true,
     },
     title: {

@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 import { Account, Student } from "./models";
 import { Op } from "sequelize";
 import dotenv from "dotenv";
+import { TokenExpiredError } from "jsonwebtoken";
 dotenv.config();
 
 // Define a middleware for authenticating requests
@@ -40,9 +41,14 @@ const authenticate = async (req: any, res: any, next: any) => {
     // Attach the account
     req.account = account;
     next();
-  } catch (error) {
-    console.error("Error authenticating account:", error);
-    res.status(500).json({ error: "Unable to authenticate account" });
+  } catch (error: any) {
+    // console.error("Error authenticating account:", error);
+    res
+      .status(401)
+      .json({
+        error: "Unable to authenticate account",
+        message: error.message,
+      });
   }
 };
 
