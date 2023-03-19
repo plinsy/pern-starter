@@ -11,16 +11,20 @@ import { Op } from "sequelize";
 router.post("/login", async (req: any, res: any, next: any) => {
   try {
     const { nie, accessKey } = req.body;
-    const student = await Student.findOne({ where: { nie } });
+    const student = await Student.findOne({
+      where: {
+        nie: {
+          [Op.like]: `%${nie}%`,
+        },
+      },
+    });
     if (!student) {
-      return res
-        .status(400)
-        .send({ message: `User with nie = ${nie} not found` });
+      return res.status(400).send({ message: `Compte étudiant introuvable` });
     }
     const form: Form | null = await Form.findOne({
       where: {
         accessKey: {
-          [Op.like]: [accessKey],
+          [Op.like]: accessKey,
         },
         state: {
           [Op.not]: ["closed", "canceled"],
@@ -30,7 +34,7 @@ router.post("/login", async (req: any, res: any, next: any) => {
     if (!form) {
       return res
         .status(400)
-        .send({ message: `Form with accessKey = ${accessKey} not found` });
+        .send({ message: `Fiche d'évaluation introuvable` });
     }
     // if (form.state === "closed") {
     //   return res.status(400).send({ message: `Form not available` });

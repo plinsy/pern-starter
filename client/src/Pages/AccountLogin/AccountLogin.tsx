@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useFormik } from "formik";
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import Field from "../../Component/Field";
 import Button from "../../Component/Button";
 import apiService from "../../Providers/api.service";
 import storageService from "../../Providers/storage.service";
 import { decodeToken } from "react-jwt";
 import Alert from "../../Component/Alert";
+import { handleError, handleSuccess } from "../../Utils/ResponseHandler";
 
 const AccountLogin = () => {
   const [alert, setAlert] = useState({
@@ -14,6 +15,8 @@ const AccountLogin = () => {
     message: "Loading...",
     shown: false,
   });
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -27,10 +30,11 @@ const AccountLogin = () => {
         const { token } = res.data;
         storageService.set("token", token);
         apiService.reload();
-        return decodeToken(token);
+        handleSuccess(setAlert, "Vérification réussie");
+        navigate("/forms/now");
       } catch (err: any) {
         setSubmitting(false);
-        setAlert({ color: "danger", message: err.message, shown: true });
+        handleError(err, setAlert);
         throw err;
       }
     },
