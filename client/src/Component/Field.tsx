@@ -39,6 +39,7 @@ const Field = (props: any) => {
             className="form-control"
             required={props.required}
             placeholder={props.placeholder ?? ""}
+            autoComplete={props.autoComplete ?? props.name}
           />
         )}
       </div>

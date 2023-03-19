@@ -2,12 +2,12 @@ import "./Login.css";
 import Field from "../../../Component/Field";
 import Button from "../../../Component/Button";
 import Alert from "../../../Component/Alert";
-import { Form } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useFormik } from "formik";
 import apiService from "../../../Providers/api.service";
 import storageService from "../../../Providers/storage.service";
-import { decodeToken } from "react-jwt";
+import { handleError, handleSuccess } from "../../../Utils/ResponseHandler";
 
 const Login = () => {
   const [alert, setAlert] = useState({
@@ -16,9 +16,11 @@ const Login = () => {
     shown: false,
   });
 
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
-      email: "",
+      login: "",
       password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
@@ -28,10 +30,13 @@ const Login = () => {
         const { token } = res.data;
         storageService.set("token", token);
         apiService.reload();
-        return decodeToken(token);
+        handleSuccess(setAlert, "Vous êtes maintenant connecté");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       } catch (err: any) {
         setSubmitting(false);
-        setAlert({ color: "danger", message: err.message, shown: true });
+        handleError(err, setAlert);
         throw err;
       }
     },
@@ -41,7 +46,7 @@ const Login = () => {
     <>
       <Alert {...alert} />
       <Form onSubmit={formik.handleSubmit}>
-        <div className="container-fluid login-container">
+        <div className="container-fluid login-container d-flex flex-column">
           <div className="main">
             <div className="side-panel">
               <div className="logo">
@@ -58,10 +63,10 @@ const Login = () => {
             <div className="main-panel">
               <h1>Identifiez-vous !</h1>
               <Field
-                value={formik.values.email}
+                value={formik.values.login}
                 type="text"
-                label="E-mail"
-                name="email"
+                label="E-mail ou pseudo"
+                name="login"
                 placeholder="Votre e-mail"
                 handleChange={formik.handleChange}
               />
@@ -76,6 +81,7 @@ const Login = () => {
               <div className="form-group">
                 <Button
                   type="submit"
+                  disabled={formik.isSubmitting}
                   value="Commencer"
                   color="success"
                   className="w-100"
@@ -83,6 +89,9 @@ const Login = () => {
               </div>
             </div>
           </div>
+          <Link to={"/admin/register"} className="nav-link">
+            Pas encore de compte?
+          </Link>
         </div>
       </Form>
     </>

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const router = express.Router({ mergeParams: true });
 router.use(express.json());
 router.use(cors());
-import { Account, Form } from "./../models";
+import { Account } from "./../models";
 import { Op } from "sequelize";
 const bcrypt = require("bcryptjs");
 
@@ -36,7 +36,9 @@ router.post("/register", async (req: any, res: any) => {
 
 router.post("/login", async (req: any, res: any, next: any) => {
   try {
-    const { email, username, password } = req.body;
+    const email = req.body.login || "";
+    const username = req.body.login || "";
+    const password = req.body.password || "";
     const account = await Account.findOne({
       where: {
         [Op.or]: [{ username }, { email }],
