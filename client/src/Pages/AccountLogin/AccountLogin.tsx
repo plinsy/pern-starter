@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFormik } from "formik";
-import { Form, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import Field from "../../Component/Field";
 import Button from "../../Component/Button";
 import apiService from "../../Providers/api.service";
@@ -8,8 +8,9 @@ import storageService from "../../Providers/storage.service";
 import { decodeToken } from "react-jwt";
 import Alert from "../../Component/Alert";
 import { handleError, handleSuccess } from "../../Utils/ResponseHandler";
+import { DefaultProps } from "../../App";
 
-const AccountLogin = () => {
+const AccountLogin = (props: DefaultProps) => {
   const [alert, setAlert] = useState({
     color: "info",
     message: "Loading...",
@@ -20,18 +21,21 @@ const AccountLogin = () => {
 
   const formik = useFormik({
     initialValues: {
-      nie: "",
-      accessKey: "",
+      login: "",
+      password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
         setAlert({ color: "info", message: "Loading...", shown: true });
         const res: any = await apiService.post("/accounts/login", values);
-        const { token } = res.data;
+        const { token, account } = res.data;
         storageService.set("token", token);
         apiService.reload();
+        if (props.dispatch) {
+          props.dispatch({ type: "LOGIN", payload: account });
+        }
         handleSuccess(setAlert, "Vérification réussie");
-        navigate("/forms/now");
+        navigate("/dashboard");
       } catch (err: any) {
         setSubmitting(false);
         handleError(err, setAlert);
@@ -43,63 +47,48 @@ const AccountLogin = () => {
   return (
     <>
       <Alert {...alert} />
-      <section className="row">
-        <aside className="col-11 col-xl-5 mx-auto mt-5 pt-5">
-          <article className="card shadow border-0 rounded-3 mt-5">
-            <div className="card-body">
-              <section className="row">
-                <aside className="col-12 col-md-6">
-                  <article className="card bg-success h-100">
-                    <section className="text-white d-flex flex-column justify-content-between h-100 card-body py-5">
-                      <div className="logo mt-3">
-                        <div className="logo-esmia text-dark">
-                          <div className="esmia">ESMIA</div>
-                          <div className="start-title">
-                            <strong>E_</strong>
-                          </div>
-                        </div>
-                        <div className="end-title">
-                          <strong>valuation</strong>
-                        </div>
-                      </div>
-                      <h4 className="mb-4">Votre avis a de la valeur</h4>
-                    </section>
-                  </article>
-                </aside>
-                <aside className="col-12 col-md-6 py-5">
-                  <article className="my-5 py-5">
-                    <h2 className="mb-5">Identifiez-vous!</h2>
-                    <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit}>
+        <section className="row">
+          <aside className="col-11 col-xl-5 mx-auto mt-5 pt-5">
+            <article className="card shadow border-0 rounded-3 mt-5">
+              <div className="card-body">
+                <section className="row">
+                  <aside className="col-12 col-md-6 py-5 mx-auto">
+                    <article className="my-5 py-5">
+                      <h2 className="text-center mb-5">Connexion</h2>
                       <Field
-                        label="NIE"
-                        name="nie"
-                        value={formik.values.nie}
+                        label="Email ou pseudo"
+                        name="login"
+                        value={formik.values.login}
                         handleChange={formik.handleChange}
                       />
                       <Field
-                        label="Clé d'accès"
+                        label="Mot de passe"
                         type="password"
-                        name="accessKey"
-                        value={formik.values.accessKey}
+                        name="password"
+                        value={formik.values.password}
                         handleChange={formik.handleChange}
                       />
                       <div className="form-group text-center">
                         <Button
                           type="submit"
                           disabled={formik.isSubmitting}
-                          value="Commencer l'évaluation"
+                          value="Se connecter"
                           color="success"
-                          className=""
+                          className="w-100"
                         />
                       </div>
-                    </Form>
-                  </article>
-                </aside>
-              </section>
-            </div>
-          </article>
-        </aside>
-      </section>
+                    </article>
+                  </aside>
+                </section>
+                <Link to="/accounts/register" className="nav-link">
+                  S'inscrire
+                </Link>
+              </div>
+            </article>
+          </aside>
+        </section>
+      </Form>
     </>
   );
 };

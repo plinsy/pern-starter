@@ -1,5 +1,5 @@
 {
-  "name": "e-valuation",
+  "name": "jarvis",
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/esmia-hackaton/e-valuation.git"
+    "url": "git+ssh://git@github.com/esmia-hackaton/jarvis.git"
   },
   "keywords": [
     "Evalue"
@@ -18,9 +18,9 @@
   "author": "plinsy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/esmia-hackaton/e-valuation/issues"
+    "url": "https://github.com/esmia-hackaton/jarvis/issues"
   },
-  "homepage": "https://github.com/esmia-hackaton/e-valuation#readme",
+  "homepage": "https://github.com/esmia-hackaton/jarvis#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",

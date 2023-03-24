@@ -4,7 +4,7 @@ import storageService from "./storage.service";
 
 export const login = async (email: string, password: string) => {
   try {
-    const response: any = await apiService.post("/auth/login", {
+    const response: any = await apiService.post("/accounts/login", {
       email,
       password,
     });
@@ -28,6 +28,6 @@ export const getCurrentUser = async () => {
   if (!token || isExpired(token)) {
     return null;
   }
-  const user = (await apiService.get("/auth/me")).data.user;
-  return user;
+  const account = (await apiService.get("/accounts/me")).data.account;
+  return account;
 };

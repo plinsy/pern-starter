@@ -1,4 +1,11 @@
-const Field = (props: any) => {
+export interface IFieldProps {
+  disabled?: true | false;
+  type?: string;
+  value?: number | string;
+  [key: string]: any;
+}
+
+const Field = (props: IFieldProps) => {
   return (
     <>
       <div className={`form-group ${props.type !== "hidden" ? "mb-4" : ""}`}>
@@ -40,6 +47,7 @@ const Field = (props: any) => {
             required={props.required}
             placeholder={props.placeholder ?? ""}
             autoComplete={props.autoComplete ?? props.name}
+            disabled={props.disabled}
           />
         )}
       </div>

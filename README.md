@@ -1,13 +1,13 @@
-# E-valuation
+# Jarvis
 
 ## Comment installer l'application?
 
 ```bash
-git clone git@github.com:esmia-hackaton/e-valuation.git
+git clone git@github.com:esmia-hackaton/jarvis.git
 ```
 
 ```bash
-cd e-valuation/
+cd jarvis/
 ```
 
 ```bash

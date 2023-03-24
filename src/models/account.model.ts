@@ -1,15 +1,7 @@
-import {
-  Model,
-  Optional,
-  DataTypes,
-  HasManyAddAssociationMixin,
-  HasManyGetAssociationsMixin,
-  HasManyCreateAssociationMixin,
-} from "sequelize";
+import { Model, Optional, DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config";
-import Form from "./form.model";
 
-interface AccountAttributes {
+export interface IAccountAttributes {
   accountId: number;
   username: string;
   email: string;
@@ -17,12 +9,12 @@ interface AccountAttributes {
   token?: string;
 }
 
-interface AccountCreationAttributes
-  extends Optional<AccountAttributes, "accountId"> {}
+export interface IAccountCreationAttributes
+  extends Optional<IAccountAttributes, "accountId"> {}
 
 class Account
-  extends Model<AccountAttributes, AccountCreationAttributes>
-  implements AccountAttributes
+  extends Model<IAccountAttributes, IAccountCreationAttributes>
+  implements IAccountAttributes
 {
   public accountId!: number;
   public username!: string;
@@ -33,15 +25,11 @@ class Account
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date | null;
 
-  public getForms!: HasManyGetAssociationsMixin<Form>;
-  public addForm!: HasManyAddAssociationMixin<Form, number>;
-  public createForm!: HasManyCreateAssociationMixin<Form>;
-
   public static associate(models: any) {
-    Account.hasMany(Form, {
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
+    // Account.hasMany(Form, {
+    //   onDelete: "CASCADE",
+    //   onUpdate: "CASCADE",
+    // });
   }
 }
 

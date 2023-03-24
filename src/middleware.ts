@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-import { Account, Student } from "./models";
+import { Account } from "./models";
 import { Op } from "sequelize";
 import dotenv from "dotenv";
 import { TokenExpiredError } from "jsonwebtoken";
@@ -11,7 +11,7 @@ const authenticate = async (req: any, res: any, next: any) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ error: "Missing authentication token" });
+    throw new Error("Missing authentication token");
   }
 
   try {
@@ -20,22 +20,13 @@ const authenticate = async (req: any, res: any, next: any) => {
 
     // Find the account with the given ID
     const account: Account | null = await Account.findOne({
-      where: { accountId: { [Op.eq]: id } },
+      where: {
+        accountId: { [Op.eq]: id },
+      },
     });
 
     if (!account) {
-      // Find the student with the given NIE
-      const { nie } = await jwt.verify(token, process.env.JWT_SECRET);
-
-      const student: Student | null = await Student.findOne({
-        where: {
-          nie: { [Op.eq]: nie },
-        },
-      });
-
-      if (!student) {
-        return res.status(401).json({ error: "Invalid authentication token" });
-      }
+      throw new Error("Invalid authentication token");
     }
 
     // Attach the account
@@ -43,12 +34,10 @@ const authenticate = async (req: any, res: any, next: any) => {
     next();
   } catch (error: any) {
     // console.error("Error authenticating account:", error);
-    res
-      .status(401)
-      .json({
-        error: "Unable to authenticate account",
-        message: error.message,
-      });
+    res.status(401).json({
+      error: "Unable to authenticate account",
+      message: error.message,
+    });
   }
 };
 
